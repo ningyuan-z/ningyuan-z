@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>宁天歌 的个人主页</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;700&family=Noto+Sans+SC:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sky: #cfe3f3;
+    --cloud: #f6fafd;
+    --ink: #16324f;
+    --ink-soft: #4b647d;
+    --dusk: #5b6bd6;
+    --line: rgba(22, 50, 79, 0.18);
+    --serif: "Noto Serif SC", "Songti SC", "SimSun", serif;
+    --sans: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body { height: 100%; }
+
+  body {
+    font-family: var(--sans);
+    color: var(--ink);
+    background: var(--cloud);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    min-height: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  /* 图片区域 */
+  .photo {
+    position: relative;
+    background: linear-gradient(180deg, #a9cbe8 0%, var(--sky) 60%, #eaf3fa 100%);
+    min-height: 56vh;
+    overflow: hidden;
+  }
+
+  .photo img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    animation: reveal 1.4s cubic-bezier(.2, .7, .2, 1) both;
+  }
+
+  .photo.missing img { display: none; }
+
+  .photo .fallback {
+    display: none;
+    position: absolute;
+    inset: auto 24px 24px 24px;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    word-break: break-all;
+  }
+
+  .photo.missing .fallback { display: block; }
+
+  @keyframes reveal {
+    from { opacity: 0; transform: scale(1.06); }
+    to   { opacity: 1; transform: scale(1); }
+  }
+
+  /* 信息区域 */
+  .info {
+    padding: 48px 28px 56px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  h1 {
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: clamp(3rem, 9vw, 5.5rem);
+    line-height: 1.1;
+    letter-spacing: 0.06em;
+  }
+
+  .pinyin {
+    margin-top: 8px;
+    color: var(--dusk);
+    font-size: 1.05rem;
+    letter-spacing: 0.08em;
+  }
+
+  .bio {
+    margin-top: 28px;
+    max-width: 26em;
+    color: var(--ink-soft);
+    font-size: 1.05rem;
+  }
+
+  dl {
+    margin-top: 40px;
+    max-width: 30em;
+    border-top: 1px solid var(--line);
+  }
+
+  .row {
+    display: grid;
+    grid-template-columns: 5em 1fr;
+    align-items: baseline;
+    gap: 16px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  dt {
+    color: var(--ink-soft);
+    font-size: 0.95rem;
+    letter-spacing: 0.2em;
+  }
+
+  dd {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 1.3rem;
+  }
+
+  dd small {
+    display: block;
+    margin-top: 2px;
+    font-family: var(--sans);
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: var(--ink-soft);
+  }
+
+  .note {
+    margin-top: 32px;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+  }
+
+  /* 宽屏:左图右文,图片固定 */
+  @media (min-width: 860px) {
+    .page { grid-template-columns: 1.05fr 1fr; }
+    .photo { position: sticky; top: 0; height: 100vh; min-height: 0; }
+    .info { padding: 64px 7vw; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .photo img { animation: none; }
+  }
+</style>
+</head>
+<body>
+  <main class="page">
+    <figure class="photo" id="photo">
+      <!-- 图片放在仓库的 images 文件夹里 -->
+      <img
+        src="images/Sky_And_Ning_Tage.jpg"
+        alt="宁天歌的照片"
+        onerror="document.getElementById('photo').classList.add('missing')">
+      <figcaption class="fallback">图片未能加载,请确认 images/Sky_And_Ning_Tage.jpg 已上传到仓库,且文件名大小写完全一致。</figcaption>
+    </figure>
+
+    <section class="info">
+      <h1>宁天歌</h1>
+      <p class="pinyin">Níng Tiāngē</p>
+
+      <p class="bio">喜欢拍天空,也喜欢把天空剪进视频里。周末常常背着相机,追着云走。</p>
+
+      <dl>
+        <div class="row">
+          <dt>姓名</dt>
+          <dd>宁天歌</dd>
+        </div>
+        <div class="row">
+          <dt>年龄</dt>
+          <dd>21 岁</dd>
+        </div>
+        <div class="row">
+          <dt>性别</dt>
+          <dd>女</dd>
+        </div>
+        <div class="row">
+          <dt>学校</dt>
+          <dd>云澜大学<small>视觉传达设计专业,大三在读</small></dd>
+        </div>
+      </dl>
+
+      <p class="note">页面中的人物信息均为虚构。</p>
+    </section>
+  </main>
+</body>
+</html>
